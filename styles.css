@@ -1,0 +1,230 @@
+/* Import FontAwesome */
+@import url('https://use.fontawesome.com/releases/v6.5.1/css/all.css');
+
+/* Reset dasar */
+body {
+    font-family: 'Poppins', sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f4f4f4;
+    color: #333;
+}
+
+/* Header */
+header {
+    display: flex;
+    position: fixed;
+    justify-content:space-around;
+    gap: 600px;
+    align-items: center;
+    background: #6a0dad;
+    color: #fff;
+    text-align: center;
+    width: 100%;
+    top: 0;
+    right: 0;
+    padding: 0;
+    font-size: 24px;
+    font-weight: bold;
+}
+
+/* Navbar */
+.radio-container {
+    display: flex;
+    flex-direction: row;
+    position: relative;
+    padding-right: 50px;
+
+}
+
+.radio-container a {
+   color: #fff;
+   text-decoration: none;
+   padding: 0 10px;
+}
+ 
+
+/* Container utama */
+.container {
+    display: flex;
+    width: 90%;
+    margin: auto;
+    padding: 20px;
+}
+
+/* Sidebar */
+.sidebar {
+    width: 30%;
+    background: #fff;
+    padding: 20px;
+    margin-top: 30px;
+    border-radius: 10px;
+    text-align: center;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.sidebar img {
+    width: 100%;
+    max-width: 150px;
+    border-radius: 50%;
+    border: 5px solid #6a0dad;
+}
+
+.sidebar .info {
+    text-align: left;
+    margin-top: 15px;
+}
+
+.sidebar .info p {
+    font-size: 16px;
+    line-height: 1.5;
+}
+
+/* Content */
+.content {
+    width: 70%;
+    padding: 0 20px;
+}
+
+.traits {
+    ul {
+        display: flex;
+        justify-content: center;
+        gap: 15px;
+        list-style: none;
+        padding: 0;
+    }
+    
+    /* Ikon sosial media */
+    li {
+        list-style: none;
+        --color: #ff0050;
+    }
+    
+    a {
+        display: flex;
+        width: fit-content; margin: auto;
+        width: 100px;
+        height: 100px;
+        background: #eee;
+        border-radius: 15px;
+        box-shadow: -2px -2px 3px #ffffff0d, 3px 3px 3px #00000033;
+        align-items: center;
+        justify-content: center;
+        text-decoration: none;
+        transition: all .2s ease-in-out;
+    }
+    
+    .fa-brands {
+        font-size: 65px;
+        color: #1e1818;
+    }
+    
+    a:hover .fa-brands {
+        color: var(--color);
+        text-shadow: 0 0 30px var(--color);
+    }
+    
+    /* Warna khusus per ikon */
+    li:nth-child(2) {
+        --color: #1c7dd5;
+    }
+    
+    li:nth-child(3) {
+        --color: #d43256;
+    }
+    
+    li:nth-child(4) {
+        --color: #4cd137;
+    }
+    
+    /* Responsif: Jika layar kecil, ubah jadi 2x2 grid */
+    @media screen and (max-width: 900px) {
+        ul {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr); /* 2 kolom */
+            gap: 10px;
+            margin: 0 60px;
+            
+        }
+    }
+    margin-bottom: 20px;
+}
+
+/* Sosial Media Grid */
+
+
+/* Heading */
+h2 {
+    color: #6a0dad;
+    border-bottom: 2px solid #6a0dad;
+    padding-bottom: 5px;
+}
+
+/* Sections */
+section {
+    margin-bottom: 20px;
+    background: #fff;
+    padding: 15px;
+    border-radius: 10px;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+/* Bio */
+.bio p {
+    font-size: 16px;
+    line-height: 1.6;
+}
+
+/* Incentives */
+.bar {
+    height: 10px;
+    border-radius: 5px;
+    margin-bottom: 10px;
+}
+
+/* Footer */
+footer {
+    text-align: center;
+    padding: 20px;
+    background: #6a0dad;
+    color: #fff;
+    margin-top: 20px;
+    font-size: 16px;
+}
+
+.foto {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr); /* 2 kolom */ 
+    overflow: hidden;
+    cursor: pointer;
+    gap: 100px;
+    place-items: center;
+    width: 100%;
+    background: #fff;
+    padding: 90px;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.foto img {
+    width: 100%;
+    border-radius: 20px;
+    border: 5px solid #6a0dad;
+    transition: scale 0.3s;
+}
+
+img:hover {
+    box-shadow: 0 0 50px rgba(255, 0, 255, 0.8);
+    transform: scale(1.1); /* Perbesar gambar 10% */
+    scale: 1.1;
+    
+}
+
+section{
+    padding: 10px 5%;
+    margin-top: 30px;
+}
+
+body {
+    padding-top: 130px; /* Sesuaikan dengan tinggi header */
+}
