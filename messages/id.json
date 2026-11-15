@@ -3,17 +3,48 @@
     "title": "Faris Zain As-Shadiq | Full-stack web developer",
     "description": "Portofolio Faris Zain As-Shadiq, full-stack web developer dan mahasiswa S1 Informatika Universitas Syiah Kuala, Banda Aceh. Machine learning ketika produk membutuhkannya."
   },
+  "nav": {
+    "top": "Kembali ke atas",
+    "language": "Bahasa"
+  },
   "hero": {
     "name": "Faris Zain",
     "tagline": "Full-stack web developer. ML ketika dibutuhkan.",
+    "location": "Banda Aceh, Indonesia",
     "scroll": "Gulir"
   },
   "about": {
-    "portraitAlt": "Potret Faris Zain As-Shadiq"
+    "label": "Tentang",
+    "portraitAlt": "Potret Faris Zain As-Shadiq",
+    "lead": "Saya mahasiswa S1 Informatika Universitas Syiah Kuala yang membangun aplikasi web full-stack dengan Next.js, TypeScript, dan Python.",
+    "body": "Sejauh ini: website CSIRT yang diserahkan ke Badan Pengelola Migas Aceh, modul WebGIS di portal tanggap bencana universitas, dan MosqRisk, platform peringatan dini DBD yang sudah live. Machine learning masuk ketika produknya membutuhkan, bukan sebelumnya.",
+    "facts": [
+      { "term": "Program", "value": "S1 Informatika" },
+      { "term": "IPK", "value": "3,56 / 4,00" },
+      { "term": "Lulus", "value": "Mei 2027 (perkiraan)" },
+      { "term": "Lokasi", "value": "Banda Aceh, Indonesia" }
+    ]
   },
-  "lang": {
-    "label": "Bahasa",
-    "en": "Inggris",
-    "id": "Indonesia"
+  "process": {
+    "label": "Proses",
+    "title": "Cara saya bekerja",
+    "steps": [
+      {
+        "title": "Riset",
+        "text": "Mulai dari masalahnya: siapa yang memakai, data apa yang ada, dan apa yang harus jalan lebih dulu."
+      },
+      {
+        "title": "Rancang",
+        "text": "Alur dan antarmuka di Figma, lalu struktur data dan API, sebelum menulis kode."
+      },
+      {
+        "title": "Bangun",
+        "text": "Frontend dan backend dikerjakan bersama, dalam potongan kecil yang bisa langsung dicoba."
+      },
+      {
+        "title": "Rilis",
+        "text": "Deploy lebih awal, tunjukkan progres secara rutin, dan perbaiki dari masukan."
+      }
+    ]
   }
 }

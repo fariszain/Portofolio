@@ -3,17 +3,48 @@
     "title": "Faris Zain As-Shadiq | Full-stack web developer",
     "description": "Portfolio of Faris Zain As-Shadiq, a full-stack web developer and Informatics undergraduate at Universitas Syiah Kuala, Banda Aceh. Machine learning when the product needs it."
   },
+  "nav": {
+    "top": "Back to top",
+    "language": "Language"
+  },
   "hero": {
     "name": "Faris Zain",
     "tagline": "Full-stack web developer. ML when it's needed.",
+    "location": "Banda Aceh, Indonesia",
     "scroll": "Scroll"
   },
   "about": {
-    "portraitAlt": "Portrait of Faris Zain As-Shadiq"
+    "label": "About",
+    "portraitAlt": "Portrait of Faris Zain As-Shadiq",
+    "lead": "I'm an Informatics undergraduate at Universitas Syiah Kuala who builds full-stack web applications with Next.js, TypeScript and Python.",
+    "body": "So far: a CSIRT website delivered to Badan Pengelola Migas Aceh, a WebGIS module inside the university's disaster-response portal, and MosqRisk, a dengue early-warning platform that is live. Machine learning comes in when the product needs it, not before.",
+    "facts": [
+      { "term": "Degree", "value": "Bachelor of Informatics" },
+      { "term": "GPA", "value": "3.56 / 4.00" },
+      { "term": "Graduating", "value": "May 2027 (expected)" },
+      { "term": "Based in", "value": "Banda Aceh, Indonesia" }
+    ]
   },
-  "lang": {
-    "label": "Language",
-    "en": "English",
-    "id": "Indonesian"
+  "process": {
+    "label": "Process",
+    "title": "How I work",
+    "steps": [
+      {
+        "title": "Research",
+        "text": "Start with the problem: who uses it, what data exists, and what has to work first."
+      },
+      {
+        "title": "Design",
+        "text": "Flows and interface in Figma, then the data structure and API, before any code."
+      },
+      {
+        "title": "Build",
+        "text": "Frontend and backend together, in small pieces that can be tried right away."
+      },
+      {
+        "title": "Ship",
+        "text": "Deploy early, show progress regularly, and fix what the feedback finds."
+      }
+    ]
   }
 }

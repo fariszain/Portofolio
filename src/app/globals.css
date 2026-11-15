@@ -9,8 +9,19 @@
   --muted: #9b9b9b;
   --red: #e11d2e;
   --maroon: #7a0f1b;
+  /* Lighter red for small text only: --red on --bg is 4.2:1, below WCAG AA.
+     This tint is 6.1:1. Large type, rules and fills keep --red. */
+  --red-soft: #ff4d5a;
+
+  --gutter: 1.5rem;
 
   color-scheme: dark;
+}
+
+@media (min-width: 40rem) {
+  :root {
+    --gutter: 2.5rem;
+  }
 }
 
 @theme inline {
@@ -20,6 +31,7 @@
   --color-text: var(--text);
   --color-muted: var(--muted);
   --color-red: var(--red);
+  --color-red-soft: var(--red-soft);
   --color-maroon: var(--maroon);
 
   --font-display: var(--font-anton), "Impact", "Arial Narrow", sans-serif;
@@ -60,4 +72,119 @@ body {
 .reveal-unit {
   display: inline-block;
   will-change: transform;
+}
+
+/* ---------------------------------------------------------------------------
+   Hero title card
+   ------------------------------------------------------------------------ */
+
+/* The name always spans the full content width on one line. The divisor is
+   the measured width of "FARIS ZAIN" in Anton (3.895 em) plus a small
+   margin; change it if the name or the display font changes. */
+.hero-fit {
+  container-type: inline-size;
+}
+
+.hero-name {
+  position: relative;
+  font-size: calc(100cqw / 3.92);
+  line-height: 0.84;
+  letter-spacing: 0;
+  white-space: nowrap;
+
+  /* Red light: position, size and strength are driven from Hero.tsx. */
+  --lx: 50%;
+  --ly: 50%;
+  --lw: 17vw;
+  --lh: 17vw;
+  --lo: 0;
+}
+
+/* A red copy of the name, visible only inside the light. It is generated
+   content with empty alt text, so it is never read out or indexed twice. */
+.hero-name::after {
+  content: attr(data-text);
+  content: attr(data-text) / "";
+  position: absolute;
+  inset: 0;
+  color: var(--red);
+  opacity: var(--lo);
+  pointer-events: none;
+  -webkit-mask-image: radial-gradient(
+    ellipse var(--lw) var(--lh) at var(--lx) var(--ly),
+    #000 0%,
+    transparent 100%
+  );
+  mask-image: radial-gradient(
+    ellipse var(--lw) var(--lh) at var(--lx) var(--ly),
+    #000 0%,
+    transparent 100%
+  );
+}
+
+/* Intro start state. `data-intro="play"` is set by an inline script before
+   first paint, so nothing flashes. If the script bundle never arrives, the
+   fail-safe animation shows everything after a few seconds anyway. */
+html[data-intro="play"] [data-intro-item] {
+  opacity: 0;
+  animation: intro-failsafe-fade 0.5s 3.5s forwards;
+}
+
+html[data-intro="play"] .hero-rule {
+  transform: scaleX(0);
+  animation: intro-failsafe-rule 0.5s 3.5s forwards;
+}
+
+@keyframes intro-failsafe-fade {
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes intro-failsafe-rule {
+  to {
+    transform: scaleX(1);
+  }
+}
+
+/* [Scroll] cue: a short red line that keeps dropping. */
+.scroll-cue {
+  position: relative;
+  padding-bottom: 2.75rem;
+}
+
+.scroll-cue::after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  bottom: 0;
+  width: 1px;
+  height: 2rem;
+  background: var(--red);
+  transform-origin: top;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .scroll-cue::after {
+    animation: scroll-cue 1.8s cubic-bezier(0.65, 0, 0.35, 1) infinite;
+  }
+}
+
+@keyframes scroll-cue {
+  0% {
+    transform: scaleY(0);
+    transform-origin: top;
+  }
+  50% {
+    transform: scaleY(1);
+    transform-origin: top;
+  }
+  51% {
+    transform: scaleY(1);
+    transform-origin: bottom;
+  }
+  100% {
+    transform: scaleY(0);
+    transform-origin: bottom;
+  }
 }
