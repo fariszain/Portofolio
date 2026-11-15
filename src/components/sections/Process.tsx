@@ -8,7 +8,7 @@ type Props = {
 
 export function Process({ copy }: Props) {
   return (
-    <section id="process" className="px-(--gutter) py-28 sm:py-40">
+    <section id="process" className="px-(--gutter) py-(--section-y)">
       <SectionLabel index={2} as="p">
         {copy.label}
       </SectionLabel>
@@ -16,7 +16,7 @@ export function Process({ copy }: Props) {
       <RevealText
         as="h2"
         by="char"
-        className="mt-5 font-display text-[clamp(3.25rem,10vw,10rem)] uppercase leading-[0.9]"
+        className="mt-5 font-display text-[clamp(3.5rem,13vw,13rem)] uppercase leading-[0.9]"
       >
         {copy.title}
       </RevealText>

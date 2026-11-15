@@ -14,6 +14,8 @@
   --red-soft: #ff4d5a;
 
   --gutter: 1.5rem;
+  /* Vertical breathing room between sections. */
+  --section-y: clamp(7rem, 17vw, 15rem);
 
   color-scheme: dark;
 }
@@ -75,34 +77,103 @@ body {
 }
 
 /* ---------------------------------------------------------------------------
+   Atmosphere: film grain, vignette and a dim red glow. CSS and one inline
+   SVG filter only, no image files.
+   ------------------------------------------------------------------------ */
+
+body::before,
+body::after {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: 40;
+  pointer-events: none;
+}
+
+/* Grain: a small tile of SVG fractal noise, rasterized once and repeated. */
+body::before {
+  opacity: 0.075;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='240' height='240'%3E%3Cfilter id='n' x='0' y='0' width='100%25' height='100%25'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 0 0 0 1.1 -.25'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  background-size: 240px 240px;
+}
+
+/* Vignette: the frame darkens toward its corners. */
+body::after {
+  background: radial-gradient(125% 90% at 50% 42%, transparent 52%, rgb(0 0 0 / 0.55) 100%);
+}
+
+/* ---------------------------------------------------------------------------
    Hero title card
    ------------------------------------------------------------------------ */
 
-/* The name always spans the full content width on one line. The divisor is
-   the measured width of "FARIS ZAIN" in Anton (3.895 em) plus a small
-   margin; change it if the name or the display font changes. */
-.hero-fit {
+/* Dim red glow behind the portrait. */
+.hero {
+  background: radial-gradient(70% 46% at 78% 58%, rgb(122 15 27 / 0.42), transparent 72%);
+}
+
+@media (min-width: 64rem) {
+  .hero {
+    background: radial-gradient(44% 64% at 70% 56%, rgb(122 15 27 / 0.46), transparent 72%);
+  }
+}
+
+.hero-stage {
   container-type: inline-size;
 }
 
+/* The font size here is the size of the name. The name and the portrait
+   are both measured in these ems, so they overlap by the same amount on
+   every screen. "FARIS", the wider line, is 1.93em wide in Anton; change
+   the numbers below if the name or the display font changes.
+   Phones: the name fills the column and the portrait hangs from it.
+   Desktop: name on the left, portrait in front of its right edge. */
+.hero-composition {
+  position: relative;
+  isolation: isolate;
+  font-size: min(50.5cqw, 34svh);
+}
+
+.hero-location {
+  margin-bottom: 0.75rem;
+  font-size: 0.875rem;
+  line-height: 1.4;
+}
+
+/* Middle layer: in front of the red block, behind the cutout figure. */
 .hero-name {
   position: relative;
-  font-size: calc(100cqw / 3.92);
-  line-height: 0.84;
+  z-index: 1;
+  font-size: 1em;
+  line-height: 0.92;
   letter-spacing: 0;
   white-space: nowrap;
 
-  /* Red light: position, size and strength are driven from Hero.tsx. */
-  --lx: 50%;
-  --ly: 50%;
+  /* Red light, driven from Hero.tsx. --lx/--ly are pixels from the name's
+     top-left corner; --lw/--lh are the size; --lo is the strength. */
+  --lx: 0px;
+  --ly: 0px;
   --lw: 17vw;
   --lh: 17vw;
   --lo: 0;
 }
 
-/* A red copy of the name, visible only inside the light. It is generated
+/* One word per line. --ox/--oy say where each line starts inside the name,
+   so both lines can share one light position. */
+.hero-name > span {
+  position: relative;
+  display: block;
+  width: fit-content;
+  --ox: 0px;
+  --oy: 0px;
+}
+
+.hero-name > span:last-child {
+  --oy: 0.92em;
+}
+
+/* A red copy of each word, visible only inside the light. It is generated
    content with empty alt text, so it is never read out or indexed twice. */
-.hero-name::after {
+.hero-name > span::after {
   content: attr(data-text);
   content: attr(data-text) / "";
   position: absolute;
@@ -111,15 +182,58 @@ body {
   opacity: var(--lo);
   pointer-events: none;
   -webkit-mask-image: radial-gradient(
-    ellipse var(--lw) var(--lh) at var(--lx) var(--ly),
+    ellipse var(--lw) var(--lh) at calc(var(--lx) - var(--ox)) calc(var(--ly) - var(--oy)),
     #000 0%,
     transparent 100%
   );
   mask-image: radial-gradient(
-    ellipse var(--lw) var(--lh) at var(--lx) var(--ly),
+    ellipse var(--lw) var(--lh) at calc(var(--lx) - var(--ox)) calc(var(--ly) - var(--oy)),
     #000 0%,
     transparent 100%
   );
+}
+
+/* Phones: the portrait hangs from the right, tucked under the second line. */
+.hero-portrait {
+  position: relative;
+  width: 1.3em;
+  margin-top: -0.42em;
+  margin-left: auto;
+}
+
+/* Layer 2 of 3: the cutout figure stands in front of the name. */
+.hero-portrait .portrait-figure {
+  z-index: 2;
+}
+
+/* Desktop: the portrait sits against the right edge, and the second line
+   is pushed right until its last letter runs across the red block. The
+   location moves into the pocket that opens under the first line. */
+@media (min-width: 64rem) {
+  .hero-composition {
+    font-size: min(30cqw, 37svh);
+  }
+
+  /* 50% is where the second line starts, as the name is two equal lines. */
+  .hero-location {
+    position: absolute;
+    top: calc(50% + 1.5rem);
+    left: 0;
+    margin: 0;
+  }
+
+  .hero-name > span:last-child {
+    margin-left: calc(100cqw - 2.9em);
+    --ox: calc(100cqw - 2.9em);
+  }
+
+  .hero-portrait {
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    width: 1.63em;
+    margin: 0;
+  }
 }
 
 /* Intro start state. `data-intro="play"` is set by an inline script before
@@ -187,4 +301,65 @@ html[data-intro="play"] .hero-rule {
     transform: scaleY(0);
     transform-origin: bottom;
   }
+}
+
+/* ---------------------------------------------------------------------------
+   Marquee: one slow line of roles
+   ------------------------------------------------------------------------ */
+
+.marquee {
+  overflow: hidden;
+  padding-block: clamp(1rem, 2.4vw, 2.25rem);
+}
+
+.marquee-track {
+  display: flex;
+  width: max-content;
+}
+
+.marquee-run {
+  display: flex;
+  flex-shrink: 0;
+  align-items: center;
+  font-family: var(--font-display);
+  font-size: clamp(3.25rem, 9.5vw, 9.5rem);
+  line-height: 1;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+
+.marquee-run > span:not(.marquee-mark) {
+  padding-inline: 0.3em;
+}
+
+.marquee-outline {
+  color: transparent;
+  -webkit-text-stroke: 1.5px var(--muted);
+}
+
+.marquee-mark {
+  flex-shrink: 0;
+  width: 0.2em;
+  height: 0.2em;
+  background: var(--red);
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .marquee-track {
+    animation: marquee 90s linear infinite;
+  }
+}
+
+@keyframes marquee {
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+/* ---------------------------------------------------------------------------
+   About
+   ------------------------------------------------------------------------ */
+
+.about {
+  background: radial-gradient(46% 42% at 0% 18%, rgb(122 15 27 / 0.22), transparent 70%);
 }

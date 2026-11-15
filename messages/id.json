@@ -11,7 +11,13 @@
     "name": "Faris Zain",
     "tagline": "Full-stack web developer. ML ketika dibutuhkan.",
     "location": "Banda Aceh, Indonesia",
-    "scroll": "Gulir"
+    "scroll": "Gulir",
+    "roles": [
+      "Full-stack",
+      "Web",
+      "ML",
+      "Informatika"
+    ]
   },
   "about": {
     "label": "Tentang",
@@ -19,10 +25,22 @@
     "lead": "Saya mahasiswa S1 Informatika Universitas Syiah Kuala yang membangun aplikasi web full-stack dengan Next.js, TypeScript, dan Python.",
     "body": "Sejauh ini: website CSIRT yang diserahkan ke Badan Pengelola Migas Aceh, modul WebGIS di portal tanggap bencana universitas, dan MosqRisk, platform peringatan dini DBD yang sudah live. Machine learning masuk ketika produknya membutuhkan, bukan sebelumnya.",
     "facts": [
-      { "term": "Program", "value": "S1 Informatika" },
-      { "term": "IPK", "value": "3,56 / 4,00" },
-      { "term": "Lulus", "value": "Mei 2027 (perkiraan)" },
-      { "term": "Lokasi", "value": "Banda Aceh, Indonesia" }
+      {
+        "term": "Program",
+        "value": "S1 Informatika"
+      },
+      {
+        "term": "IPK",
+        "value": "3,56 / 4,00"
+      },
+      {
+        "term": "Lulus",
+        "value": "Mei 2027 (perkiraan)"
+      },
+      {
+        "term": "Lokasi",
+        "value": "Banda Aceh, Indonesia"
+      }
     ]
   },
   "process": {

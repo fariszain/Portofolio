@@ -22,46 +22,55 @@ type Props = {
   sizes?: string;
 };
 
+/**
+ * Black-and-white figure in front of a red block.
+ *
+ * The two are separate layers (`portrait-block`, `portrait-figure`) and the
+ * component creates no stacking context of its own, so a parent can slide
+ * other content between them: the hero puts the giant name there.
+ *
+ * The block covers the lower 86% of the frame. With the cutout, the head
+ * rises above it. Until the cutout exists, the original studio photo is
+ * multiplied onto the block: its white backdrop turns red, which gives the
+ * same figure-on-red composition inside a clean rectangular slot.
+ */
 export function Portrait({
   alt,
   className,
   preload = false,
-  sizes = "(min-width: 1024px) 34vw, 82vw",
+  sizes = "(min-width: 64rem) 40vw, 64vw",
 }: Props) {
   const hasCutout = existsSync(path.join(process.cwd(), "public", CUTOUT_SRC));
 
   return (
-    <figure className={cn("relative isolate aspect-[4/5] w-full", className)}>
-      {/* Red accent block behind the figure, drawn in CSS so it stays flexible. */}
+    <figure className={cn("relative aspect-[4/5]", className)}>
       <span
         aria-hidden="true"
-        className={cn(
-          "absolute -z-10 bg-red",
-          hasCutout ? "inset-x-[12%] bottom-0 top-[18%]" : "inset-0 translate-x-3 translate-y-3",
-        )}
+        className="portrait-block absolute inset-x-0 bottom-0 top-[14%] bg-red"
       />
 
       {hasCutout ? (
-        <Image
-          src={CUTOUT_SRC}
-          alt={alt}
-          fill
-          sizes={sizes}
-          preload={preload}
-          className="object-contain object-bottom grayscale contrast-110"
-        />
+        <span className="portrait-figure absolute inset-0">
+          <Image
+            src={CUTOUT_SRC}
+            alt={alt}
+            fill
+            sizes={sizes}
+            preload={preload}
+            className="object-contain object-bottom grayscale contrast-110"
+          />
+        </span>
       ) : (
-        // TODO(faris): temporary. Uses the original studio photo until
+        // TODO(faris): temporary slot. Uses the original studio photo until
         // public/img/faris-cutout.png exists. Cropped to hide the chairs.
-        <span className="absolute inset-0 overflow-hidden bg-text">
+        <span className="portrait-block absolute inset-x-0 bottom-0 top-[14%] overflow-hidden">
           <Image
             src={placeholder}
             alt={alt}
             fill
             sizes={sizes}
             preload={preload}
-            placeholder="blur"
-            className="origin-[45%_30%] scale-125 object-cover object-top mix-blend-multiply grayscale contrast-110"
+            className="origin-[43%_50%] scale-[1.75] object-cover object-top mix-blend-multiply brightness-125 contrast-110 grayscale"
           />
         </span>
       )}
