@@ -1,0 +1,19 @@
+{
+  "meta": {
+    "title": "Faris Zain As-Shadiq | Full-stack web developer",
+    "description": "Portfolio of Faris Zain As-Shadiq, a full-stack web developer and Informatics undergraduate at Universitas Syiah Kuala, Banda Aceh. Machine learning when the product needs it."
+  },
+  "hero": {
+    "name": "Faris Zain",
+    "tagline": "Full-stack web developer. ML when it's needed.",
+    "scroll": "Scroll"
+  },
+  "about": {
+    "portraitAlt": "Portrait of Faris Zain As-Shadiq"
+  },
+  "lang": {
+    "label": "Language",
+    "en": "English",
+    "id": "Indonesian"
+  }
+}

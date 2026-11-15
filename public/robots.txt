@@ -1,4 +1,0 @@
-User-Agent: *
-Allow: /
-
-Sitemap: https://fariszain.vercel.app/sitemap.xml

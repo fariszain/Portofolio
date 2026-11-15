@@ -39,3 +39,11 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# private source material (never publish)
+/sertif/
+/CV/
+/BRIEF_CLAUDE_CODE.md
+
+# claude code local settings
+.claude/settings.local.json

@@ -1,0 +1,19 @@
+{
+  "meta": {
+    "title": "Faris Zain As-Shadiq | Full-stack web developer",
+    "description": "Portofolio Faris Zain As-Shadiq, full-stack web developer dan mahasiswa S1 Informatika Universitas Syiah Kuala, Banda Aceh. Machine learning ketika produk membutuhkannya."
+  },
+  "hero": {
+    "name": "Faris Zain",
+    "tagline": "Full-stack web developer. ML ketika dibutuhkan.",
+    "scroll": "Gulir"
+  },
+  "about": {
+    "portraitAlt": "Potret Faris Zain As-Shadiq"
+  },
+  "lang": {
+    "label": "Bahasa",
+    "en": "Inggris",
+    "id": "Indonesia"
+  }
+}
